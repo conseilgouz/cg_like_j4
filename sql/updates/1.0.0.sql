@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS `#__cg_like` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `service` int(3) NOT NULL,  `cid` int(11) NOT NULL,  `lastip` varchar(50) NOT NULL,  `lastdate` DATETIME NOT NULL,  PRIMARY KEY (`id`),  KEY `cg_like_idx` (`cid`));
