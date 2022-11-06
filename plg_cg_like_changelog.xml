@@ -1,0 +1,14 @@
+<changelogs>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
+		<version>2.0.1</version>
+        <note>
+            <item>06/11/2022</item>
+        </note>
+         <change>
+            <item>Remove JQuery</item>
+            <item>Use Joomla 4 WebAssets</item>
+        </change>
+	</changelog>
+</changelogs>

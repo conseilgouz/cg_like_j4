@@ -1,1 +1,43 @@
-jQuery(function ($) {	$('*[class^="cg_like_btn_"]').click (function() {		$this = jQuery(this);		$b = $this.attr('data');		if ($this.prop('disabled')) {			return false;		}		$this.prop('disabled', true);		request = {			'option' : 'com_ajax',			'plugin' : 'cglike',			'data'   : 'action=update&id='+ $b,			'format' : 'raw'			};		jQuery.ajax({			type   : 'POST',			data   : request,			success: function (data) {				$this.prop('disabled',false); //enable				var parsed = JSON.parse(data);				if (parsed.ret == 0) {					$('#cg_like_icon_'+$b).removeClass('icon-heart-empty').addClass('icon-heart')					$('#cg_like_val_'+$b).text(parsed.cnt);					$('#cg_result_'+$b).text(parsed.msg);				} else {					$('#cg_result_'+$b).text(parsed.msg);				}			}		});	return false;	});});
+/* 
+ * @module		CG Like for Joomla 4.x
+ * @author		ConseilGouz
+ * @license		GNU General Public License version 2 or later
+ */ 
+document.addEventListener('DOMContentLoaded', function() {
+	buttons = document.querySelectorAll('[class^="cg_like_btn_"]');
+	['click', 'touchstart'].forEach(type => {
+		buttons[0].addEventListener(type, function(e) {
+			$this = this;
+			e.stopPropagation();
+			e.preventDefault();		
+			$b = $this.getAttribute('data');
+			if ($this.disabled) {
+				return false;
+			}
+			$this.setAttribute('disabled', '')
+			url = 'index.php?option=com_ajax&plugin=cglike&action=update&id='+ $b+'&format=raw';
+			Joomla.request({
+				method   : 'POST',
+				url   : url,
+				onSuccess: function (data, xhr) {
+					$this.removeAttribute('disabled'); 
+					var parsed = JSON.parse(data);
+					if (parsed.ret == 0) {
+						icon = document.querySelector('#cg_like_icon_'+$b)
+						icon.classList.remove('icon-heart-empty');
+						icon.classList.add('icon-heart');
+						val = document.querySelector('#cg_like_val_'+$b);
+						val.innerHTML = parsed.cnt;
+						letexte = document.querySelector('#cg_result_'+$b);
+						letexte.innerHTML = parsed.msg;
+					} else {
+						letexte = document.querySelector('#cg_result_'+$b);
+						letexte.innerHTML = parsed.msg;
+					}
+				}
+			});
+			return false;
+		});
+	});	
+})
+

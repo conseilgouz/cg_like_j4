@@ -1,1 +1,129 @@
-<?xml version="1.0" encoding="utf-8"?><extension version="4.0" type="plugin" group="content" method="upgrade">	<name>PLG_CONTENT_CG_LIKE</name>	<creationDate>October 2021</creationDate>	<author>ConseilGouz</author>	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>	<authorUrl>https://www.conseilgouz.com</authorUrl>	<copyright>Copyright 2021(c) ConseilGouz. All rights reserved</copyright>	<license>GNU GPL v2.0 http://www.gnu.org/licenses/gpl-2.0.html</license>	<version>2.0.0</version>	<description>PLG_CONTENT_CG_LIKE_XML_DESCRIPTION</description>	<files>		<filename plugin="cglike">cglike.php</filename>		<filename >cglike.xml</filename>		<filename>index.html</filename>		<folder>sql</folder>	</files>	<media destination="plg_cglike" folder="media">		<folder>js</folder>		<folder>font</folder>		<folder>css</folder>		<filename>index.html</filename>	</media>	<languages>		<language tag="fr-FR">language/fr-FR/plg_content_cglike.ini</language>		<language tag="fr-FR">language/fr-FR/plg_content_cglike.sys.ini</language>		<language tag="en-GB">language/en-GB/plg_content_cglike.ini</language>		<language tag="en-GB">language/en-GB/plg_content_cglike.sys.ini</language>	</languages>	<install>		<sql>			<file driver="mysql" charset="utf8">sql/install.sql</file>		</sql>	</install>	<uninstall>		<sql>			<file driver="mysql" charset="utf8">sql/uninstall.sql</file>		</sql>	</uninstall>	<config>		<fields name="params">			<fieldset name="basic">				<field 					name="regonly" 					type="radio" 					default="0" 					class="btn-group btn-group-yesno"					label="PLG_CONTENT_CG_LIKE_REGONLY" 					description="PLG_CONTENT_CG_LIKE_REGONLY_DESC">										<option value="1">JYES</option>					<option value="0">JNO</option>				</field>				<field 					name="showincat" 					type="radio" 					default="1"					class="btn-group btn-group-yesno"					label="PLG_CONTENT_CG_LIKE_SHOWINCAT"					description="PLG_CONTENT_CG_LIKE_SHOWINCAT_DESC">					<option value="1">JYES</option>					<option value="0">JNO</option>				</field>				<field 					name="showinart" 					type="radio" 					default="1"					class="btn-group btn-group-yesno"					label="PLG_CONTENT_CG_LIKE_SHOWINART"					description="PLG_CONTENT_CG_LIKE_SHOWINART_DESC">					<option value="1">JYES</option>					<option value="0">JNO</option>				</field>				<field 					name="pos_show"					type="radio"					default="beforec"					class="btn-group"					label="PLG_CONTENT_CG_LIKE_PLG_POSITION"					description="PLG_CONTENT_CG_LIKE_PLG_POSITION_DESC">					<option value="beforec">PLG_CONTENT_CG_LIKE_BEFORE_CONTENT</option>					<option value="afterc">PLG_CONTENT_CG_LIKE_AFTER_CONTENT</option>				</field>				<field 					name="alignment"					type="radio"					default="right"					class="btn-group"					label="PLG_CONTENT_CG_LIKE_ALIGNMENT"					description="PLG_CONTENT_CG_LIKE_ALIGNMENT_DESC">					<option value="left">PLG_CONTENT_CG_LIKE_LEFT</option>					<option value="center">PLG_CONTENT_CG_LIKE_CENTER</option>					<option value="right">PLG_CONTENT_CG_LIKE_RIGHT</option>				</field>				<field 					name="voteagain" 					type="list" 					default="-1"					label="PLG_CONTENT_CG_LIKE_VOTEAGAIN"					description="PLG_CONTENT_CG_LIKE_VOTEAGAIN_DESC">					<option value="0">PLG_CONTENT_CG_LIKE_ALWAYS</option>					<option value="1">PLG_CONTENT_CG_LIKE_AF_1DAY</option>					<option value="7">PLG_CONTENT_CG_LIKE_AF_1WEEK</option>					<option value="30">PLG_CONTENT_CG_LIKE_AF_1MOTNH</option>					<option value="365">PLG_CONTENT_CG_LIKE_AF_1YEAR</option>					<option value="9999">PLG_CONTENT_CG_LIKE_NEVER</option>				</field>				<field 					name="encats" 					type="category" 					extension="com_content" 					multiple="multiple" 					label="PLG_CONTENT_CG_LIKE_ENCATS" 					description="PLG_CONTENT_CG_LIKE_ENCATS_DESC" />				<field 					name="discats" 					type="category" 					extension="com_content" 					multiple="multiple" 					label="PLG_CONTENT_CG_LIKE_DISCATS" 					description="PLG_CONTENT_CG_LIKE_DISCATS_DESC" />			</fieldset>		</fields>	</config>    <updateservers>        <server type="extension" folder="content" priority="1" name="cglike">https://www.conseilgouz.com/updates/cg_like_update.xml</server>    </updateservers></extension>
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="4.0" type="plugin" group="content" method="upgrade">
+	<name>PLG_CONTENT_CG_LIKE</name>
+	<creationDate>November 2022</creationDate>
+	<author>ConseilGouz</author>
+	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
+	<authorUrl>https://www.conseilgouz.com</authorUrl>
+	<copyright>Copyright 2022(c) ConseilGouz. All rights reserved</copyright>
+	<license>GNU GPL v2.0 http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<version>2.0.1</version>
+	<description>PLG_CONTENT_CG_LIKE_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="cglike">cglike.php</filename>
+		<filename >cglike.xml</filename>
+		<filename>index.html</filename>
+		<folder>sql</folder>
+	</files>
+	<media destination="plg_cglike" folder="media">
+		<folder>js</folder>
+		<folder>font</folder>
+		<folder>css</folder>
+		<filename>index.html</filename>
+	</media>
+	<languages>
+		<language tag="fr-FR">language/fr-FR/plg_content_cglike.ini</language>
+		<language tag="fr-FR">language/fr-FR/plg_content_cglike.sys.ini</language>
+		<language tag="en-GB">language/en-GB/plg_content_cglike.ini</language>
+		<language tag="en-GB">language/en-GB/plg_content_cglike.sys.ini</language>
+	</languages>
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.sql</file>
+		</sql>
+	</uninstall>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field 
+					name="regonly" 
+					type="radio" 
+					default="0" 
+					class="btn-group btn-group-yesno"
+					label="PLG_CONTENT_CG_LIKE_REGONLY" 
+					description="PLG_CONTENT_CG_LIKE_REGONLY_DESC">					
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field 
+					name="showincat" 
+					type="radio" 
+					default="1"
+					class="btn-group btn-group-yesno"
+					label="PLG_CONTENT_CG_LIKE_SHOWINCAT"
+					description="PLG_CONTENT_CG_LIKE_SHOWINCAT_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field 
+					name="showinart" 
+					type="radio" 
+					default="1"
+					class="btn-group btn-group-yesno"
+					label="PLG_CONTENT_CG_LIKE_SHOWINART"
+					description="PLG_CONTENT_CG_LIKE_SHOWINART_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field 
+					name="pos_show"
+					type="radio"
+					default="beforec"
+					class="btn-group"
+					label="PLG_CONTENT_CG_LIKE_PLG_POSITION"
+					description="PLG_CONTENT_CG_LIKE_PLG_POSITION_DESC">
+					<option value="beforec">PLG_CONTENT_CG_LIKE_BEFORE_CONTENT</option>
+					<option value="afterc">PLG_CONTENT_CG_LIKE_AFTER_CONTENT</option>
+				</field>
+				<field 
+					name="alignment"
+					type="radio"
+					default="right"
+					class="btn-group"
+					label="PLG_CONTENT_CG_LIKE_ALIGNMENT"
+					description="PLG_CONTENT_CG_LIKE_ALIGNMENT_DESC">
+					<option value="left">PLG_CONTENT_CG_LIKE_LEFT</option>
+					<option value="center">PLG_CONTENT_CG_LIKE_CENTER</option>
+					<option value="right">PLG_CONTENT_CG_LIKE_RIGHT</option>
+				</field>
+				<field 
+					name="voteagain" 
+					type="list" 
+					default="-1"
+					label="PLG_CONTENT_CG_LIKE_VOTEAGAIN"
+					description="PLG_CONTENT_CG_LIKE_VOTEAGAIN_DESC">
+					<option value="0">PLG_CONTENT_CG_LIKE_ALWAYS</option>
+					<option value="1">PLG_CONTENT_CG_LIKE_AF_1DAY</option>
+					<option value="7">PLG_CONTENT_CG_LIKE_AF_1WEEK</option>
+					<option value="30">PLG_CONTENT_CG_LIKE_AF_1MOTNH</option>
+					<option value="365">PLG_CONTENT_CG_LIKE_AF_1YEAR</option>
+					<option value="9999">PLG_CONTENT_CG_LIKE_NEVER</option>
+				</field>
+				<field 
+					name="encats" 
+					type="category" 
+					extension="com_content" 
+					multiple="multiple" 
+					label="PLG_CONTENT_CG_LIKE_ENCATS" 
+					description="PLG_CONTENT_CG_LIKE_ENCATS_DESC" />
+				<field 
+					name="discats" 
+					type="category" 
+					extension="com_content" 
+					multiple="multiple" 
+					label="PLG_CONTENT_CG_LIKE_DISCATS" 
+					description="PLG_CONTENT_CG_LIKE_DISCATS_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+	<changelogurl>https://raw.githubusercontent.com/conseilgouz/cg_like_j4/master/plg_cg_like_changelog.xml		
+    <updateservers>
+        <server type="extension" folder="content" priority="1" name="cglike">https://raw.githubusercontent.com/conseilgouz/updates_github/master/cg_like_update.xml</server>
+    </updateservers>
+</extension>
+
