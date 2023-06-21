@@ -2,6 +2,18 @@
 	<changelog>
 		<element>cg_like</element>
 		<type>plugin</type>
+		<version>2.0.3</version>
+        <note>
+            <item>20/06/2023</item>
+        </note>
+         <fix>
+            <item>JS error if no button defined on current page</item>
+            <item>invalid ajax url if no menu defined for current article</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
 		<version>2.0.2</version>
         <note>
             <item>19/06/2023</item>
