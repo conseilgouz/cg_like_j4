@@ -82,8 +82,10 @@ class plgContentCGLike extends CMSPlugin
 		}			
 		// Geting data needed
 		$res = $this->CGLikeModeling($article, $params);
+		$clearfix = "";
+		if ($this->params->get('clearfix', '0')) $clearfix = " clearfix";
 		// Start of output
-		$output = '<div class="cg_like cgalign-'. $this->params->get('alignment', 'right') .'" id="cg_like_' . $id . '">';
+		$output = '<div class="cg_like '.$clearfix.'" id="cg_like_' . $id . '">';
 		$output .= '<div class="grid" id="pos_grid">';
 		$output .= '<div class="cglike_val cgalign-'. $this->params->get('alignment', 'right') .'" id="cglike_val_' . $id .'">';
 		if ((($this->params->get('regonly') == '1') && (!JFactory::getUser()->guest)) ||
