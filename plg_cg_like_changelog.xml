@@ -2,6 +2,21 @@
 	<changelog>
 		<element>cg_like</element>
 		<type>plugin</type>
+		<version>2.0.4</version>
+        <note>
+            <item>22/06/2023</item>
+        </note>
+         <fix>
+			<item>fix align center</item>
+        </fix>
+		<addition>
+			<item>New parameter Clearfix</item>
+			<item>Add layout="joomla.form.field.list-fancy-select" on lists in xml</item>
+		</addition>
+	</changelog>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
 		<version>2.0.3</version>
         <note>
             <item>20/06/2023</item>
