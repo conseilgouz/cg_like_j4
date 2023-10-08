@@ -4,13 +4,14 @@
  * @author		ConseilGouz
  * @license		GNU General Public License version 2 or later
  */ 
+namespace ConseilGouz\Plugin\Content\Cglike\Extension;
 defined('_JEXEC') or die('Direct access denied!');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\PluginHelper;
 
-class plgContentCGLike extends CMSPlugin
+class Cglike extends CMSPlugin
 {
 	public function __construct(& $subject, $config)
 	{
@@ -53,15 +54,15 @@ class plgContentCGLike extends CMSPlugin
 		$showinart = $this->params->get('showinart', 1);
 		$showincat = $this->params->get('showincat', 1);
 		if( ($view == 'article') and (!$showinart) )
-			return false;
+			return "";
 		if( ($view == 'category') and (!$showincat) )
-			return false;	
+			return "";	
 		// Categories and Articles filter
 		if($this->params->get('encats') or $this->params->get('discats') or $this->params->get('disarts'))
 		{
 			$db	= Factory::getDBO();
 			if( $this->params->get('disarts') and (in_array($id, $this->params->get('disarts'))) )	{
-				return false;	
+				return "";	
 			}
 			if($this->params->get('discats') or $this->params->get('encats')) {
 				// get article category
@@ -73,10 +74,10 @@ class plgContentCGLike extends CMSPlugin
 				$cnres = $db->loadObject();
 				$catid = $cnres->catid;
 				if( $this->params->get('discats') and (in_array($catid, $this->params->get('discats'))) ) {
-					return false;
+					return "";
 				}
 				if( $this->params->get('encats') and (!in_array($catid, $this->params->get('encats'))) ) {
-					return false;		
+					return "";		
 				}			
 			}	
 		}			

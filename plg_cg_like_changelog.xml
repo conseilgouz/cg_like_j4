@@ -2,6 +2,23 @@
 	<changelog>
 		<element>cg_like</element>
 		<type>plugin</type>
+		<version>2.0.5</version>
+        <note>
+            <item>08/10/2023</item>
+        </note>
+         <fix>
+			<item>fix "Event onContentAfterDisplay only accepts String results" error if show in category = false </item>
+        </fix>
+		<change>
+			<item>Refactor plugin as service provider</item>
+		</change>
+		<addition>
+			<item>Dynamic version from manifest file</item>
+		</addition>
+	</changelog>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
 		<version>2.0.4</version>
         <note>
             <item>22/06/2023</item>

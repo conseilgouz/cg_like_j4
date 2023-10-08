@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="4.0" type="plugin" group="content" method="upgrade">
 	<name>PLG_CONTENT_CG_LIKE</name>
-	<creationDate>2023/06/22</creationDate>
+	<creationDate>2023-10-08</creationDate>
 	<author>ConseilGouz</author>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>https://www.conseilgouz.com</authorUrl>
 	<copyright>Copyright 2023(c) ConseilGouz. All rights reserved</copyright>
 	<license>GNU GPL v2.0 http://www.gnu.org/licenses/gpl-2.0.html</license>
-	<version>2.0.4</version>
+	<version>2.0.5</version>
+	<namespace path="src">ConseilGouz\Plugin\Content\Cglike</namespace>
 	<description>PLG_CONTENT_CG_LIKE_XML_DESCRIPTION</description>
 	<files>
-		<filename plugin="cglike">cglike.php</filename>
+		<folder plugin="cglike">services</folder>
+		<folder>src</folder>
 		<filename >cglike.xml</filename>
 		<filename>index.html</filename>
 		<folder>sql</folder>
@@ -39,7 +41,8 @@
 	</uninstall>
 	<config>
 		<fields name="params">
-			<fieldset name="basic">
+			<fieldset name="basic" addfieldprefix="ConseilGouz\Plugin\Content\Cglike\Field">
+				<field name="version" type="version" extension="cglike" margintop="-3em" xml="/plugins/content/cglike/cglike.xml"/>>
 				<field 
 					name="regonly" 
 					type="radio" 
