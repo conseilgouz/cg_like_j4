@@ -2,6 +2,17 @@
 	<changelog>
 		<element>cg_like</element>
 		<type>plugin</type>
+		<version>2.0.6</version>
+        <note>
+            <item>09/10/2023</item>
+        </note>
+         <fix>
+			<item>J 5.x : fix 'JFactory not found' on registered only</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
 		<version>2.0.5</version>
         <note>
             <item>08/10/2023</item>

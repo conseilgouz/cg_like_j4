@@ -89,7 +89,7 @@ class Cglike extends CMSPlugin
 		$output = '<div class="cg_like '.$clearfix.'" id="cg_like_' . $id . '">';
 		$output .= '<div class="grid" id="pos_grid">';
 		$output .= '<div class="cglike_val cgalign-'. $this->params->get('alignment', 'right') .'" id="cglike_val_' . $id .'">';
-		if ((($this->params->get('regonly') == '1') && (!JFactory::getUser()->guest)) ||
+		if ((($this->params->get('regonly') == '1') && (!Factory::getUser()->guest)) ||
 		($this->params->get('regonly') == '0') ) {
 			$output .= '<a href="javascript:void(null)" class="cg_like_btn_'.$id.';" data="'.$id.'">';	
 		}
@@ -101,7 +101,7 @@ class Cglike extends CMSPlugin
 	    }
 		$output .="<span class='cg-icon ".$icon."' id='cg_like_icon_".$id."'></span>";
 		$output .= "<span font-size:100%;' id='cg_like_val_".$id."' style='margin-left:0.5em'>".$result."</span>";
-		if ((($this->params->get('regonly') == '1') && (!JFactory::getUser()->guest)) ||
+		if ((($this->params->get('regonly') == '1') && (!Factory::getUser()->guest)) ||
 		($this->params->get('regonly') == '0') ) {
 			$output .= '</a>';
 		}
