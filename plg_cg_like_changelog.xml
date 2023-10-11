@@ -2,6 +2,7 @@
 	<changelog>
 		<element>cg_like</element>
 		<type>plugin</type>
+		<group>content</group>
 		<version>2.0.6</version>
         <note>
             <item>09/10/2023</item>
@@ -13,6 +14,7 @@
 	<changelog>
 		<element>cg_like</element>
 		<type>plugin</type>
+		<group>content</group>
 		<version>2.0.5</version>
         <note>
             <item>08/10/2023</item>
@@ -30,6 +32,7 @@
 	<changelog>
 		<element>cg_like</element>
 		<type>plugin</type>
+		<group>content</group>
 		<version>2.0.4</version>
         <note>
             <item>22/06/2023</item>
@@ -45,6 +48,7 @@
 	<changelog>
 		<element>cg_like</element>
 		<type>plugin</type>
+		<group>content</group>
 		<version>2.0.3</version>
         <note>
             <item>20/06/2023</item>
@@ -57,6 +61,7 @@
 	<changelog>
 		<element>cg_like</element>
 		<type>plugin</type>
+		<group>content</group>
 		<version>2.0.2</version>
         <note>
             <item>19/06/2023</item>
@@ -68,6 +73,7 @@
 	<changelog>
 		<element>cg_like</element>
 		<type>plugin</type>
+		<group>content</group>
 		<version>2.0.1</version>
         <note>
             <item>06/11/2022</item>
