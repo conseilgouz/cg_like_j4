@@ -1,8 +1,8 @@
 /* 
- * @module		CG Like for Joomla 4.x
+ * @module		CG Like for Joomla 4.x/5.x
  * @author		ConseilGouz
- * @license		GNU General Public License version 2 or later
- * @version 	2.0.3
+ * @license		GNU General Public License version 3 or later
+ * @version 	2.1.0
  */ 
 document.addEventListener('DOMContentLoaded', function() {
 	buttons = document.querySelectorAll('[class^="cg_like_btn_"]');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					return false;
 				}
 				$this.setAttribute('disabled', '')
-				url = '?option=com_ajax&plugin=cglike&action=update&id='+ $b+'&format=raw';
+				url = '?option=com_ajax&plugin=cglike&action=update&group=content&id='+ $b+'&format=raw';
 				Joomla.request({
 					method   : 'POST',
 					url   : url,

@@ -3,6 +3,18 @@
 		<element>cg_like</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>2.1.0</version>
+        <note>
+            <item>24/05/2024</item>
+        </note>
+        <change>
+			<item>Merge content and ajax plugins in one content plugin</item>
+        </change>
+	</changelog>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>2.0.6</version>
         <note>
             <item>09/10/2023</item>
