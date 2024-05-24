@@ -3,6 +3,18 @@
 		<element>cg_like</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>2.1.1</version>
+        <note>
+            <item>24/05/2024</item>
+        </note>
+        <fix>
+			<item>Clean up code, remove unnecessary code</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>2.1.0</version>
         <note>
             <item>24/05/2024</item>

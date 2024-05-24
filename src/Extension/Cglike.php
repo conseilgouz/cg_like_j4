@@ -48,7 +48,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
         $wa->registerAndUseStyle('heart', $plg.'css/heart.css');
         $wa->registerAndUseScript('cglike', $plg.'js/cglike.js');
     }
-    public function CGLikeModeling($article, $params)
+    public function CGLikeModeling($article)
     {
         $id = $article->id;
         $db	= Factory::getContainer()->get(DatabaseInterface::class);
@@ -63,7 +63,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
         }
         return $res;
     }
-    public function CGLikePrepare($article, $params)
+    public function CGLikePrepare($article)
     {
         $input	= Factory::getApplication()->input;
         $id = $article->id;
@@ -101,7 +101,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
             }
         }
         // Geting data needed
-        $res = $this->CGLikeModeling($article, $params);
+        $res = $this->CGLikeModeling($article);
         $clearfix = "";
         if ($this->params->get('clearfix', '0')) {
             $clearfix = " clearfix";
@@ -110,7 +110,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
         $output = '<div class="cg_like '.$clearfix.'" id="cg_like_' . $id . '">';
         $output .= '<div class="grid" id="pos_grid">';
         $output .= '<div class="cglike_val cgalign-'. $this->params->get('alignment', 'right') .'" id="cglike_val_' . $id .'">';
-        if ((($this->params->get('regonly') == '1') && (!Factory::getUser()->guest)) ||
+        if ((($this->params->get('regonly') == '1') && (!Factory::getApplication()->getIdentity()->guest)) ||
         ($this->params->get('regonly') == '0')) {
             $output .= '<a href="javascript:void(null)" class="cg_like_btn_'.$id.';" data="'.$id.'">';
         }
@@ -122,7 +122,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
         }
         $output .= "<span class='cg-icon ".$icon."' id='cg_like_icon_".$id."'></span>";
         $output .= "<span font-size:100%;' id='cg_like_val_".$id."' style='margin-left:0.5em'>".$result."</span>";
-        if ((($this->params->get('regonly') == '1') && (!Factory::getUser()->guest)) ||
+        if ((($this->params->get('regonly') == '1') && (!Factory::getApplication()->getIdentity()->guest)) ||
         ($this->params->get('regonly') == '0')) {
             $output .= '</a>';
         }
@@ -144,20 +144,15 @@ class Cglike extends CMSPlugin implements SubscriberInterface
         if ($app->isClient('administrator')) {
             return;
         }
-        $context    = $event[0];
-        $article    = $event[1];
-        $params     = $event[2];
+        $context    = $event->getContext();
+        $article    = $event->getItem();
 
         $allowed_contexts = array('com_content.category', 'com_content.article', 'com_content.featured');
         if (!in_array($context, $allowed_contexts)) {
             return;
         }
         if($this->params->get('pos_show', 'beforec') == 'beforec') {
-            if ($context == 'com_content.article') {
-                $article->text = $this->CGLikePrepare($article, $params).$article->text;
-            } else {
-                $article->introtext = $this->CGLikePrepare($article, $params).$article->introtext;
-            }
+            $event->addResult($this->CGLikePrepare($article));
             return true;
         }
     }
@@ -168,20 +163,15 @@ class Cglike extends CMSPlugin implements SubscriberInterface
             return;
         }
 
-        $context    = $event[0];
-        $article    = $event[1];
-        $params     = $event[2];
+        $context    = $event->getContext();
+        $article    = $event->getItem();
 
         $allowed_contexts = array('com_content.category', 'com_content.article', 'com_content.featured');
         if (!in_array($context, $allowed_contexts)) {
             return;
         }
         if($this->params->get('pos_show', 'beforec') == 'afterc') {
-            if ($context == 'com_content.article') {
-                $article->text .=  $this->CGLikePrepare($article, $params);
-            } else {
-                $article->introtext .=  $this->CGLikePrepare($article, $params);
-            }
+            $event->addResult($this->CGLikePrepare($article));
         }
         return true;
     }
