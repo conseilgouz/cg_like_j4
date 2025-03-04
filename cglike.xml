@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="4.0" type="plugin" group="content" method="upgrade">
 	<name>PLG_CONTENT_CG_LIKE</name>
-	<creationDate>2024-05-24</creationDate>
+	<creationDate>2025-03-04</creationDate>
 	<author>ConseilGouz</author>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>https://www.conseilgouz.com</authorUrl>
-	<copyright>Copyright 2024(c) ConseilGouz. All rights reserved</copyright>
-	<license>GNU GPL v2.0 https://www.gnu.org/licenses/gpl-3.0.html</license>
+	<copyright>Copyright 2025(c) ConseilGouz. All rights reserved</copyright>
+	<license>GNU GPL v3.0 https://www.gnu.org/licenses/gpl-3.0.html</license>
 	<version>2.1.1</version>
 	<namespace path="src">ConseilGouz\Plugin\Content\Cglike</namespace>
 	<description>PLG_CONTENT_CG_LIKE_XML_DESCRIPTION</description>

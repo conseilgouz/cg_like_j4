@@ -1,9 +1,8 @@
 <?php
 /**
 * CG Like Plugin  - Joomla 4.x/5.x plugin
-* Version			: 2.1.0
-* copyright 		: Copyright (C) 2024 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 */
 // No direct access to this file
 defined('_JEXEC') or die;
@@ -21,7 +20,7 @@ use Joomla\Filesystem\File;
 class plgcontentcglikeInstallerScript
 {
     private $min_joomla_version      = '4.0.0';
-    private $min_php_version         = '8.0';
+    private $min_php_version         = '7.4';
     private $name                    = 'Plugin Content CG Like';
     private $exttype                 = 'plugin';
     private $extname                 = 'cglike';
@@ -86,7 +85,7 @@ class plgcontentcglikeInstallerScript
         );
         $fields = array($db->qn('enabled') . ' = 1');
 
-        $query = $db->getQuery(true);
+        $query = $db->createQuery();
         $query->update($db->quoteName('#__extensions'))->set($fields)->where($conditions);
         $db->setQuery($query);
         try {
@@ -123,7 +122,7 @@ class plgcontentcglikeInstallerScript
             $db->quoteName('folder').'='.$db->quote('ajax'),
             $db->quoteName('element').'='.$db->quote('cglike')
         );
-        $query = $db->getQuery(true);
+        $query = $db->createQuery();
         $query->delete($db->quoteName('#__extensions'))->where($conditions);
         $db->setQuery($query);
         try {
@@ -132,7 +131,7 @@ class plgcontentcglikeInstallerScript
             Log::add('unable to delete cg like ajax from extensions', Log::ERROR, 'jerror');
         }
         // delete #__update_sites (keep showing update even if system cg like ajax is disabled)
-        $query = $db->getQuery(true);
+        $query = $db->createQuery();
         $query->select('site.update_site_id')
         ->from($db->quoteName('#__extensions', 'ext'))
         ->join('LEFT', $db->quoteName('#__update_sites_extensions', 'site').' ON site.extension_id = ext.extension_id')
@@ -148,7 +147,7 @@ class plgcontentcglikeInstallerScript
             $db->qn('update_site_id') . ' = ' . $upd_id
         );
 
-        $query = $db->getQuery(true);
+        $query = $db->createQuery();
         $query->delete($db->quoteName('#__update_sites'))->where($conditions);
         $db->setQuery($query);
         try {
@@ -199,7 +198,7 @@ class plgcontentcglikeInstallerScript
             JPATH_PLUGINS . '/system/' . $this->installerName,
         ]);
         $db = $this->db;
-        $query = $db->getQuery(true)
+        $query = $db->createQuery()
             ->delete('#__extensions')
             ->where($db->quoteName('element') . ' = ' . $db->quote($this->installerName))
             ->where($db->quoteName('folder') . ' = ' . $db->quote('system'))
