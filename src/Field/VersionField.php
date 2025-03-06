@@ -39,7 +39,7 @@ class VersionField extends FormField
 		// Load language
 		$jinput = Factory::getApplication()->input;
 		$db = Factory::getDBO();
-		$query = $db->createQuery();
+		$query = $db->getQuery(true);
 		$query
 			->select($db->quoteName(array('element','folder','type')))
 			->from($db->quoteName('#__extensions'))

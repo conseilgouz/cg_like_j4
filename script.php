@@ -85,7 +85,7 @@ class plgcontentcglikeInstallerScript
         );
         $fields = array($db->qn('enabled') . ' = 1');
 
-        $query = $db->createQuery();
+        $query = $db->getQuery(true);
         $query->update($db->quoteName('#__extensions'))->set($fields)->where($conditions);
         $db->setQuery($query);
         try {
@@ -122,7 +122,7 @@ class plgcontentcglikeInstallerScript
             $db->quoteName('folder').'='.$db->quote('ajax'),
             $db->quoteName('element').'='.$db->quote('cglike')
         );
-        $query = $db->createQuery();
+        $query = $db->getQuery(true);
         $query->delete($db->quoteName('#__extensions'))->where($conditions);
         $db->setQuery($query);
         try {
@@ -131,7 +131,7 @@ class plgcontentcglikeInstallerScript
             Log::add('unable to delete cg like ajax from extensions', Log::ERROR, 'jerror');
         }
         // delete #__update_sites (keep showing update even if system cg like ajax is disabled)
-        $query = $db->createQuery();
+        $query = $db->getQuery(true);
         $query->select('site.update_site_id')
         ->from($db->quoteName('#__extensions', 'ext'))
         ->join('LEFT', $db->quoteName('#__update_sites_extensions', 'site').' ON site.extension_id = ext.extension_id')
@@ -147,7 +147,7 @@ class plgcontentcglikeInstallerScript
             $db->qn('update_site_id') . ' = ' . $upd_id
         );
 
-        $query = $db->createQuery();
+        $query = $db->getQuery(true);
         $query->delete($db->quoteName('#__update_sites'))->where($conditions);
         $db->setQuery($query);
         try {
@@ -198,7 +198,7 @@ class plgcontentcglikeInstallerScript
             JPATH_PLUGINS . '/system/' . $this->installerName,
         ]);
         $db = $this->db;
-        $query = $db->createQuery()
+        $query = $db->getQuery(true)
             ->delete('#__extensions')
             ->where($db->quoteName('element') . ' = ' . $db->quote($this->installerName))
             ->where($db->quoteName('folder') . ' = ' . $db->quote('system'))

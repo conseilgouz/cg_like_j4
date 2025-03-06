@@ -52,7 +52,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
     {
         $id = $article->id;
         $db	= Factory::getContainer()->get(DatabaseInterface::class);
-        $query = $db->createQuery();
+        $query = $db->getQuery(true);
         $query->select('COUNT(id)');
         $query->from('#__cg_like');
         $query->where('cid = '.$db->quote($id));
@@ -85,7 +85,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
             }
             if($this->params->get('discats') or $this->params->get('encats')) {
                 // get article category
-                $query = $db->createQuery();
+                $query = $db->getQuery(true);
                 $query->select('id, catid');
                 $query->from('#__content');
                 $query->where('id = '.$db->quote($id));
@@ -178,7 +178,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
     public function countId($id)
     {
         $db	= Factory::getContainer()->get(DatabaseInterface::class);
-        $query = $db->createQuery();
+        $query = $db->getQuery(true);
         $query   ->select('COUNT(id)')
                 ->from($db->quoteName('#__cg_like'))
                 ->where($db->quoteName('cid'). '='.$db->quote($id));
@@ -245,7 +245,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
     public function addOne($id)
     {
         $db	= Factory::getContainer()->get(DatabaseInterface::class);
-        $query = $db->createQuery();
+        $query = $db->getQuery(true);
         $query->insert('#__cg_like');
         $query->set('cid = '.$db->quote($id));
         $query->set('lastdate = NOW()');

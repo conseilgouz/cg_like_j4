@@ -3,6 +3,18 @@
 		<element>cg_like</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>2.2.2</version>
+        <note>
+            <item>06/03/2025</item>
+        </note>
+        <fix>
+			<item>Reverse Joomla 5.3 : createQuery to getQuery</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>2.2.1</version>
         <note>
             <item>05/03/2025</item>
