@@ -65,7 +65,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
     }
     public function CGLikePrepare($article)
     {
-        $input	= Factory::getApplication()->input;
+        $input	= Factory::getApplication()->getInput();
         $id = $article->id;
         // View Restriction
         $view = $input->get('view');
@@ -188,7 +188,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
     }
     public function goAjax($event)
     {
-        $input	= Factory::getApplication()->input;
+        $input	= Factory::getApplication()->getInput();
         $id  = $input->get('id', '', 'integer');
         $out = "";
         if (!self::cookie($id)) {// cookie exist => exit
@@ -208,7 +208,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
     }
     public function cookie($id)
     {
-        $jinput = Factory::getApplication()->input;
+        $jinput = Factory::getApplication()->getInput();
         $cookieName = 'cg_like_'.$id;
         $value = $jinput->cookie->get($cookieName);
         if ($value) { // cookie exist
