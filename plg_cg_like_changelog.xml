@@ -8,7 +8,7 @@
             <item>17/07/2026</item>
         </note>
         <fix>
-            <item>mysql update : must be in sqm/updates/mysql folder</item>
+            <item>mysql update : must be in sql/updates/mysql folder</item>
         </fix>
 	</changelog>
 	<changelog>
