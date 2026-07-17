@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="4.0" type="plugin" group="content" method="upgrade">
 	<name>PLG_CONTENT_CG_LIKE</name>
-	<creationDate>2025-09-22</creationDate>
+	<creationDate>2026-07-17</creationDate>
 	<author>ConseilGouz</author>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>https://www.conseilgouz.com</authorUrl>
 	<copyright>Copyright 2025(c) ConseilGouz. All rights reserved</copyright>
 	<license>GNU GPL v3.0 https://www.gnu.org/licenses/gpl-3.0.html</license>
-	<version>2.3.0</version>
+	<version>2.3.1</version>
 	<namespace path="src">ConseilGouz\Plugin\Content\Cglike</namespace>
 	<description>PLG_CONTENT_CG_LIKE_XML_DESCRIPTION</description>
     <scriptfile>script.php</scriptfile>
@@ -40,6 +40,11 @@
 			<file driver="mysql" charset="utf8">sql/uninstall.sql</file>
 		</sql>
 	</uninstall>
+   	<update>
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
 	<config>
 		<fields name="params">
 			<fieldset name="basic" addfieldprefix="ConseilGouz\Library\Field">

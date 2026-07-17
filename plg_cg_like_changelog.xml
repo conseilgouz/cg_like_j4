@@ -3,6 +3,18 @@
 		<element>cg_like</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>2.3.1</version>
+        <note>
+            <item>17/07/2026</item>
+        </note>
+        <fix>
+            <item>mysql update : must be in sqm/updates/mysql folder</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>2.3.0</version>
         <note>
             <item>22/09/2025</item>
