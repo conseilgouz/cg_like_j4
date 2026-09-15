@@ -8,12 +8,14 @@
 namespace ConseilGouz\Plugin\Content\Cglike\Extension;
 
 defined('_JEXEC') or die('Direct access denied!');
+use Joomla\CMS\Access\Access;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
-use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;
+use Joomla\Component\Content\Site\Model\ArticleModel;
 use Joomla\Database\DatabaseAwareTrait;
 use Joomla\Database\DatabaseInterface;
 use Joomla\Registry\Registry;
@@ -197,15 +199,23 @@ class Cglike extends CMSPlugin implements SubscriberInterface
             $out .= '{"ret":"9","msg":"No article"}';
             return  $event->addResult($out);
         }
-        // check that article exists
-        $db	= Factory::getContainer()->get(DatabaseInterface::class);
-        $query = $db->getQuery(true);
-        $query->select('id');
-        $query->from('#__content');
-        $query->where('id = '.$db->quote($id));
-        $db->setQuery((string)$query);
-        $found = $db->loadResult();
-        if (!$found) {
+        $model = new ArticleModel(array('ignore_request' => true));
+        if (is_bool($model)) {
+            $out .= '{"ret":"9","msg":"Model error"}';
+            return  $event->addResult($out);
+        }
+        // check if article exists and user access level is OK
+        $app = Factory::getApplication();
+        $appParams = $app->getParams();
+        $model->setState('params', $appParams);
+        // Access filter
+        $access = ! ComponentHelper::getParams('com_content')->get('show_noauth');
+        $user = Factory::getApplication()->getIdentity();
+        $authorised = Access::getAuthorisedViewLevels($user->id);
+        $model->setState('filter.access', $access);
+        $model->setState('filter.viewlevels', $authorised);
+        $item = $model->getItem($id);
+        if (!$item) {
             $out .= '{"ret":"9","msg":"No article"}';
             return  $event->addResult($out);
         }

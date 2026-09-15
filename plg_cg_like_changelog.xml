@@ -3,6 +3,18 @@
 		<element>cg_like</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>2.3.3</version>
+        <note>
+            <item>15/09/2026</item>
+        </note>
+        <fix>
+            <item>check if article exists and user access level is OK</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>2.3.2</version>
         <note>
             <item>15/09/2026</item>
