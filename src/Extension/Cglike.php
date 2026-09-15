@@ -1,6 +1,6 @@
 <?php
 /*
- * @module		CG Like for Joomla 4.x / 5.x
+ * @module		CG Like for Joomla 4.x / 5.x / 6.x
  * @author		ConseilGouz
  * @license		GNU General Public License version 3 or later
  */
@@ -13,9 +13,10 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Language\Text;
-use Joomla\Registry\Registry;
+use Joomla\CMS\Session\Session;
 use Joomla\Database\DatabaseAwareTrait;
 use Joomla\Database\DatabaseInterface;
+use Joomla\Registry\Registry;
 use Joomla\Event\SubscriberInterface;
 
 class Cglike extends CMSPlugin implements SubscriberInterface
@@ -58,7 +59,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
         $query->where('cid = '.$db->quote($id));
         $db->setQuery((string)$query);
         $res = $db->loadResult();
-        if(empty($res)) {
+        if (empty($res)) {
             $res = 0;
         }
         return $res;
@@ -71,19 +72,19 @@ class Cglike extends CMSPlugin implements SubscriberInterface
         $view = $input->get('view');
         $showinart = $this->params->get('showinart', 1);
         $showincat = $this->params->get('showincat', 1);
-        if(($view == 'article') and (!$showinart)) {
+        if (($view == 'article') and (!$showinart)) {
             return "";
         }
-        if(($view == 'category') and (!$showincat)) {
+        if (($view == 'category') and (!$showincat)) {
             return "";
         }
         // Categories and Articles filter
-        if($this->params->get('encats') or $this->params->get('discats') or $this->params->get('disarts')) {
+        if ($this->params->get('encats') or $this->params->get('discats') or $this->params->get('disarts')) {
             $db	= Factory::getContainer()->get(DatabaseInterface::class);
-            if($this->params->get('disarts') and (in_array($id, $this->params->get('disarts')))) {
+            if ($this->params->get('disarts') and (in_array($id, $this->params->get('disarts')))) {
                 return "";
             }
-            if($this->params->get('discats') or $this->params->get('encats')) {
+            if ($this->params->get('discats') or $this->params->get('encats')) {
                 // get article category
                 $query = $db->getQuery(true);
                 $query->select('id, catid');
@@ -92,10 +93,10 @@ class Cglike extends CMSPlugin implements SubscriberInterface
                 $db->setQuery((string)$query);
                 $cnres = $db->loadObject();
                 $catid = $cnres->catid;
-                if($this->params->get('discats') and (in_array($catid, $this->params->get('discats')))) {
+                if ($this->params->get('discats') and (in_array($catid, $this->params->get('discats')))) {
                     return "";
                 }
-                if($this->params->get('encats') and (!in_array($catid, $this->params->get('encats')))) {
+                if ($this->params->get('encats') and (!in_array($catid, $this->params->get('encats')))) {
                     return "";
                 }
             }
@@ -151,7 +152,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
         if (!in_array($context, $allowed_contexts)) {
             return;
         }
-        if($this->params->get('pos_show', 'beforec') == 'beforec') {
+        if ($this->params->get('pos_show', 'beforec') == 'beforec') {
             $event->addResult($this->CGLikePrepare($article));
             return true;
         }
@@ -170,7 +171,7 @@ class Cglike extends CMSPlugin implements SubscriberInterface
         if (!in_array($context, $allowed_contexts)) {
             return;
         }
-        if($this->params->get('pos_show', 'beforec') == 'afterc') {
+        if ($this->params->get('pos_show', 'beforec') == 'afterc') {
             $event->addResult($this->CGLikePrepare($article));
         }
         return true;
@@ -188,9 +189,26 @@ class Cglike extends CMSPlugin implements SubscriberInterface
     }
     public function goAjax($event)
     {
+        Session::checkToken() or die(Text::_('JINVALID_TOKEN'));
         $input	= Factory::getApplication()->getInput();
         $id  = $input->get('id', '', 'integer');
         $out = "";
+        if (!$id) {
+            $out .= '{"ret":"9","msg":"No article"}';
+            return  $event->addResult($out);
+        }
+        // check that article exists
+        $db	= Factory::getContainer()->get(DatabaseInterface::class);
+        $query = $db->getQuery(true);
+        $query->select('id');
+        $query->from('#__content');
+        $query->where('id = '.$db->quote($id));
+        $db->setQuery((string)$query);
+        $found = $db->loadResult();
+        if (!$found) {
+            $out .= '{"ret":"9","msg":"No article"}';
+            return  $event->addResult($out);
+        }
         if (!self::cookie($id)) {// cookie exist => exit
             $out .= '{"ret":"9","msg":"'.Text::_("CG_AJAX_ALREADY").'"}';
             return  $event->addResult($out);

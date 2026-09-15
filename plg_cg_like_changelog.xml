@@ -3,6 +3,19 @@
 		<element>cg_like</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>2.3.2</version>
+        <note>
+            <item>15/09/2026</item>
+        </note>
+        <fix>
+            <item>Ajax call : check token, check </item>
+            <item>Use ConseilGouz Library 1.1.4</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cg_like</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>2.3.1</version>
         <note>
             <item>17/07/2026</item>
